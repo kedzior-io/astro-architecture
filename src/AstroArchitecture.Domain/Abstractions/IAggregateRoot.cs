@@ -1,5 +1,4 @@
-﻿namespace AstroArchitecture.Domain.Abstractions
-{
+﻿namespace AstroArchitecture.Domain.Abstractions;
+
     public interface IAggregateRoot
     { }
-}

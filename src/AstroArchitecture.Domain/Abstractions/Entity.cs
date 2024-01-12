@@ -1,9 +1,13 @@
-﻿namespace AstroArchitecture.Domain.Abstractions
+﻿using AstroArchitecture.Core.Enums;
+
+namespace AstroArchitecture.Domain.Abstractions
 {
-    public abstract class Entity
+    public abstract class Entity<T>
     {
-        public Guid Id { get; private set; }
-        public DateTime CreatedAt { get; private set; }
-        public DateTime ModifiedAt { get; private set; }
+        public T Id { get; protected set; } = default!;
+        public DateTime CreatedAt { get; protected set; } = DateTime.UtcNow;
+        public DateTime? ModifiedAt { get; protected set; }
+        public EntityStatus EntityStatus { get; protected set; } = EntityStatus.Active;
+        
     }
 }

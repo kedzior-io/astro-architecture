@@ -4,39 +4,37 @@ using AstroArchitecture.Domain.Abstractions;
 
 namespace AstroArchitecture.Domain;
 
-public class Order : Entity, IAggregateRoot
+public class Order : Entity<int>, IAggregateRoot
 {
-    public string CustomerName { get; private set; } = null!;
+    public int CustomerId { get; private set; }
+    public OrderAddress Address { get; private set; }
     public PaymentStatus Status { get; private set; } = PaymentStatus.Pending;
     public OrderStatus OrderStatus { get; private set; } = OrderStatus.Draft;
-    public string UserId { get; private set; } = null!;
+    public virtual ICollection<OrderItem> OrderItems { get; private set; } = new List<OrderItem>();
+    public virtual Customer Customer { get; private set; }
 
     private Order()
     {
         // EF
     }
 
-    public Order(string name, string userId)
+    public Order(IDictionary<Product,int> productQuantities, Customer customer, Address address)
     {
-        Guard.Against.NullOrWhiteSpace(name);
-        Guard.Against.NullOrWhiteSpace(userId);
+        Guard.Against.NullOrEmpty(productQuantities);
 
-        CustomerName = name;
-        UserId = userId;
-    }
+        foreach (var entry in productQuantities)
+        {
+            if (entry.Value <= 0)
+            {
+                throw new ArgumentException("Quantity must be greater than 0", nameof(productQuantities));
+            }
 
-    public static Order CreateDraft(string name)
-    {
-        return new Order(name, "1");
-    }
+            OrderItems.Add(new OrderItem(entry.Key, entry.Value));
+        }
 
-    public static Order Create(string name)
-    {
-        return new Order(name, "1");
-    }
+        Customer = customer;
+        Address = OrderAddress.Create(address, customer);
 
-    public static Order Create(string name, string userId)
-    {
-        return new Order(name, userId);
+        CustomerId = customer.Id;
     }
 }

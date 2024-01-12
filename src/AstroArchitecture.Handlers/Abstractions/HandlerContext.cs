@@ -3,14 +3,8 @@ using Serilog;
 
 namespace AstroArchitecture.Handlers;
 
-public sealed class HandlerContext : IHandlerContext
+public sealed class HandlerContext(IDbContext dbContext, ILogger logger) : IHandlerContext
 {
-    public IDbContext DbContext { get; private set; }
-    public ILogger Logger { get; private set; }
-
-    public HandlerContext(IDbContext dbContext, ILogger logger)
-    {
-        DbContext = dbContext;
-        Logger = logger;
-    }
+    public IDbContext DbContext { get; private set; } = dbContext;
+    public ILogger Logger { get; private set; } = logger;
 }
