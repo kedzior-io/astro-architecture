@@ -28,6 +28,8 @@ app.MapGetHandler<ListOrders.Query, ListOrders.Response>("/orders.list");
 app.MapGetHandler<GetOrderById.Query, GetOrderById.Response>("/orders.getById.{id}");
 app.MapGetHandler<GetOrderByCustomerId.Query, GetOrderByCustomerId.Response>("/orders.getOrderByCustomerId.{id}");
 
+app.MapGetHandler<ListCustomers.Query, ListCustomers.Response>("/customers.list");
+
 //app.MapPostHandler<CreateOrder.Command, CreateOrder.Response>("/orders.create");
 
 app.UseCors();
