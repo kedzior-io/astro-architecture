@@ -2,7 +2,8 @@ using Ardalis.GuardClauses;
 using AstroArchitecture.Domain.Abstractions;
 
 namespace AstroArchitecture.Domain;
-public class Product: Entity<int>, IAggregateRoot
+
+public class Product : Entity<int>, IAggregateRoot
 {
     public string Name { get; private set; }
     public decimal Price { get; private set; }

@@ -25,19 +25,10 @@ builder.Services.AddScoped<IDbContext, ApplicationDbContext>(provider => provide
 var app = builder.Build();
 
 app.MapGetHandler<ListOrders.Query, ListOrders.Response>("/orders.list");
-
 app.MapGetHandler<GetOrderById.Query, GetOrderById.Response>("/orders.getById.{id}");
-
-app.MapGetHandler<GetOrderByTotal.Query, GetOrderByTotal.Response>("/orders.getByTotal.{totalValue}");
-
 app.MapGetHandler<GetOrderByCustomerId.Query, GetOrderByCustomerId.Response>("/orders.getOrderByCustomerId.{id}");
 
-app.MapPostHandler<CreateOrder.Command, CreateOrder.Response>("/orders.create");
-
-app.MapPostHandler<ProcessOrders.Command, ProcessOrders.Response>("/orders.process");
-
-app.MapPostHandler<GetOrderAuthorized.Query, GetOrderAuthorized.Response>("/orders.authorized")
-    .RequireAuthorization();
+//app.MapPostHandler<CreateOrder.Command, CreateOrder.Response>("/orders.create");
 
 app.UseCors();
 app.UseAuthentication();

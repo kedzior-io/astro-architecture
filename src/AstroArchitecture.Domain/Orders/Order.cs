@@ -4,13 +4,13 @@ using AstroArchitecture.Domain.Abstractions;
 
 namespace AstroArchitecture.Domain;
 
-public class Order : Entity<int>, IAggregateRoot
+public class Order : Entity<Guid>, IAggregateRoot
 {
-    public int CustomerId { get; private set; }
+    public Guid CustomerId { get; private set; }
     public OrderAddress Address { get; private set; }
     public PaymentStatus Status { get; private set; } = PaymentStatus.Pending;
     public OrderStatus OrderStatus { get; private set; } = OrderStatus.Draft;
-    public virtual ICollection<OrderItem> OrderItems { get; private set; } = new List<OrderItem>();
+    public virtual ICollection<OrderItem> Items { get; private set; } = new List<OrderItem>();
     public virtual Customer Customer { get; private set; }
 
     private Order()
@@ -18,9 +18,11 @@ public class Order : Entity<int>, IAggregateRoot
         // EF
     }
 
-    public Order(IDictionary<Product,int> productQuantities, Customer customer, Address address)
+    public Order(IDictionary<Product, int> productQuantities, Customer customer, Address address)
     {
         Guard.Against.NullOrEmpty(productQuantities);
+
+        Id = Guid.NewGuid();
 
         foreach (var entry in productQuantities)
         {
@@ -29,7 +31,7 @@ public class Order : Entity<int>, IAggregateRoot
                 throw new ArgumentException("Quantity must be greater than 0", nameof(productQuantities));
             }
 
-            OrderItems.Add(new OrderItem(entry.Key, entry.Value));
+            Items.Add(new OrderItem(entry.Key, entry.Value));
         }
 
         Customer = customer;

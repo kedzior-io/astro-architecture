@@ -8,7 +8,7 @@ public static class ListOrders
 {
     public sealed record Query() : IQuery<IHandlerResponse<Response>>;
 
-    public sealed class Response(IReadOnlyCollection<Domain.Order> orders)
+    public sealed class Response(IReadOnlyCollection<Order> orders)
     {
         public IReadOnlyCollection<OrderListModel> Orders { get; private set; } = orders.Select(OrderListModel.Create).ToList();
     }
