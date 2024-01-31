@@ -19,13 +19,13 @@ I often read on how CQRS and Vertical Architecture is an overkill and has big co
 - `Handlers` - class library where all query and command handlers live
 - `Domain` - all domain entities and domain services
 - `Infrastructure` - persistence setup, sending emails etc
-- `Core` - no dependecies common stuff
+- `Core` - common stuff with no major dependecies
 
-## Installation
+## Installation & Running
 
-1. The project on the runtime creates SQLite database, go to `AstroArchitecture.Core.Constants.ConnectionStrings` and set the desired location of your SQLite. Use location the runtime can write to. 
+1. The project creates SQLite database on the runtime, go to [`AstroArchitecture.Core.Constants.ConnectionStrings`](https://github.com/kedzior-io/astro-architecture/blob/main/src/AstroArchitecture.Core/Constants/ConnectionStrings.cs) and set the desired location of your SQLite. Use location the runtime can write to. 
 
-2. View all endpoints on swagger page: `/swagger/index.html`
+2. Once launched it will pop up swagger page: `/swagger/index.html`
 
 ## Usage 
 
@@ -179,17 +179,18 @@ public class CreateProductTests
 
 Check samples here: [AstroCQRS](https://github.com/kedzior-io/astro-cqrs)
 
+More info: [Building .NET 8 APIs with Zero-Setup CQRS and Vertical Slice Architecture](https://dev.to/kedzior_io/building-net-8-apis-with-zero-setup-cqrs-and-vertical-slice-architecture-528p)
 
 ## Todo
 
-Here are things I want to to this repo:
+Here are things I want to add to this repo:
 
 - UI example
 - Blzor example
 - MVC example
 - Integration test example
 - Benchmarks
-- 
+  
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
