@@ -1,9 +1,5 @@
 ﻿namespace AstroArchitecture.Handlers;
 
-/*
- * An example of a Query without parameters
- */
-
 public static class ListOrders
 {
     public sealed record Query() : IQuery<IHandlerResponse<Response>>;
@@ -17,8 +13,10 @@ public static class ListOrders
     {
         public override async Task<IHandlerResponse<Response>> ExecuteAsync(Query query, CancellationToken ct)
         {
-            var orders = await DbContext
-                .Orders
+            var orders = await DbContext.Orders
+                .AsNoTracking()
+                .Include(x => x.Customer)
+                .Include(x => x.Items)
                 .ToListAsync(ct);
 
             return Success(new Response(orders));

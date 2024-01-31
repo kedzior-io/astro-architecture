@@ -18,4 +18,19 @@ public class Product : Entity<int>, IAggregateRoot
         Price = price;
         Stock = stock;
     }
+
+    public void SubtractStock(int quantity)
+    {
+        if (quantity <= 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(quantity), "Invalid quantuty.");
+        }
+
+        if (quantity > Stock)
+        {
+            throw new ArgumentOutOfRangeException(nameof(quantity), "Product has less stock than quantity requested.");
+        }
+
+        Stock -= quantity;
+    }
 }

@@ -28,4 +28,18 @@ public class Customer : Entity<Guid>, IAggregateRoot
         LastName = lastName;
         Email = email;
     }
+
+    public Address AddAddress(string name, string street, string city, string country, string zipCode)
+    {
+        Guard.Against.NullOrWhiteSpace(name);
+        Guard.Against.NullOrWhiteSpace(street);
+        Guard.Against.NullOrWhiteSpace(country);
+        Guard.Against.NullOrWhiteSpace(zipCode);
+
+        var address = new Address(name, street, city, country, zipCode);
+
+        Addresses.Add(address);
+
+        return address;
+    }
 }

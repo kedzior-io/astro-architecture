@@ -18,18 +18,17 @@ public class Address : Entity<Guid>, IValueObject
         // EF
     }
 
-    public Address(Customer customer, string name, string street, string city, string country, string zipCode)
+    public Address(string name, string street, string city, string country, string zipCode)
     {
         Guard.Against.NullOrWhiteSpace(name);
+        Guard.Against.NullOrWhiteSpace(street);
         Guard.Against.NullOrWhiteSpace(country);
         Guard.Against.NullOrWhiteSpace(zipCode);
 
-        Id = Guid.NewGuid();
         Name = name;
         Street = street;
         City = city;
         Country = country;
         ZipCode = zipCode;
-        Customer = customer;
     }
 }

@@ -13,8 +13,8 @@ public static class ListCustomers
     {
         public override async Task<IHandlerResponse<Response>> ExecuteAsync(Query query, CancellationToken ct)
         {
-            var orders = await DbContext
-                .Customers
+            var orders = await DbContext.Customers
+                .AsNoTracking()
                 .ToListAsync(ct);
 
             return Success(new Response(orders));

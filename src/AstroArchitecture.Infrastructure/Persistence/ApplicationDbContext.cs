@@ -24,7 +24,13 @@ public class ApplicationDbContext(DbContextOptions options) : DbContext(options)
     public DbSet<Order> Orders { get; set; }
     public DbSet<OrderItem> OrderItems { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder options) => options.UseSqlite(ConnectionStrings.Sqlite);
+    protected override void OnConfiguring(DbContextOptionsBuilder builder)
+    {
+        if (!builder.IsConfigured)
+        {
+            builder.UseSqlite(ConnectionStrings.Sqlite);
+        }
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
