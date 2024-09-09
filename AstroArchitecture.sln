@@ -20,6 +20,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AstroArchitecture.Domain", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AstroArchitecture.UnitTests", "tests\AstroArchitecture.UnitTests\AstroArchitecture.UnitTests.csproj", "{8C0364AB-9B09-4E13-88C2-A8615A9404C5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstroArchitercture.AzureFunctions", "src\AstroArchitercture.AzureFunctions\AstroArchitercture.AzureFunctions.csproj", "{04D5333F-D4DB-465F-86EE-9B0B9708F6A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +52,10 @@ Global
 		{8C0364AB-9B09-4E13-88C2-A8615A9404C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C0364AB-9B09-4E13-88C2-A8615A9404C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C0364AB-9B09-4E13-88C2-A8615A9404C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04D5333F-D4DB-465F-86EE-9B0B9708F6A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04D5333F-D4DB-465F-86EE-9B0B9708F6A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04D5333F-D4DB-465F-86EE-9B0B9708F6A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04D5333F-D4DB-465F-86EE-9B0B9708F6A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

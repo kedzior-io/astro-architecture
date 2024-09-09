@@ -3,6 +3,7 @@ using Serilog;
 using AstroArchitecture.Handlers;
 using AstroArchitecture.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
+using AstroArchitecture.Api.Azure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,8 +17,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddCors();
 
 builder.Services.AddScoped<IHandlerContext, HandlerContext>();
-builder.Services.AddDbContext<ApplicationDbContext>();
-builder.Services.AddScoped<IDbContext, ApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
+builder.Services.AddDbContext<IDbContext, ApplicationDbContext>();
+
+// Uncomment to try Service Bus triggered Azure Functions
+// builder.Services.AddServiceBus();
 
 /*
  * TODO: needs fixing.
@@ -35,6 +38,7 @@ var app = builder.Build();
 
 app.MapGetHandler<ListCustomers.Query, ListCustomers.Response>("/customers.list");
 app.MapPostHandler<CreateCustomer.Command, CreateCustomer.Response>("/customers.create");
+app.MapPostHandler<UpdateCustomer.Command>("/customers.update");
 
 app.MapGetHandler<ListAddresses.Query, ListAddresses.Response>("/addresses.list");
 app.MapPostHandler<CreateAddress.Command, CreateAddress.Response>("/addresses.create");
