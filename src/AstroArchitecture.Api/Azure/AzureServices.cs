@@ -1,5 +1,5 @@
 ﻿using AstroArchitecture.Core.Constants;
-using AstroArchitecture.Infrastructure.Providers;
+using AstroArchitecture.Infrastructure.Providers.ServiceBus;
 using Azure.Messaging.ServiceBus;
 
 namespace AstroArchitecture.Api.Azure;
@@ -10,7 +10,7 @@ public static class AzureServices
     {
         services.AddSingleton<ServiceBusClient>(_ =>
         {
-            var serviceBusConnectionString = ConnectionStrings.ServiceBusConnection;
+            var serviceBusConnectionString = ConnectionStrings.ServiceBus;
 
             if (string.IsNullOrWhiteSpace(serviceBusConnectionString))
             {

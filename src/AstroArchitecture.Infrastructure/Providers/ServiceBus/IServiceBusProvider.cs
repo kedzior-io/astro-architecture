@@ -1,4 +1,4 @@
-﻿namespace AstroArchitecture.Infrastructure.Providers;
+﻿namespace AstroArchitecture.Infrastructure.Providers.ServiceBus;
 
 public interface IServiceBusProvider
 {

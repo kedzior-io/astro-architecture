@@ -3,7 +3,9 @@ using Serilog;
 using AstroArchitecture.Handlers;
 using AstroArchitecture.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
-using AstroArchitecture.Api.Azure;
+
+//using AstroArchitecture.Api.Azure;
+//using AstroArchitecture.Infrastructure.Providers.Cache;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,13 +21,12 @@ builder.Services.AddCors();
 builder.Services.AddScoped<IHandlerContext, HandlerContext>();
 builder.Services.AddDbContext<IDbContext, ApplicationDbContext>();
 
+// Uncomment to try CacheContext with /customers.cache.list endpoint
+// builder.Services.AddSingleton<ICacheContext, CacheProvider>();
+
 // Uncomment to try Service Bus triggered Azure Functions
 // builder.Services.AddServiceBus();
 
-/*
- * TODO: needs fixing.
- * You need to add this to make swagger works
- */
 builder.Services.AddSwaggerGen(options => { options.CustomSchemaIds(s => s.FullName?.Replace("+", ".")); });
 
 builder.Services.AddAstroCqrs();
@@ -39,6 +40,7 @@ var app = builder.Build();
 app.MapGetHandler<ListCustomers.Query, ListCustomers.Response>("/customers.list");
 app.MapPostHandler<CreateCustomer.Command, CreateCustomer.Response>("/customers.create");
 app.MapPostHandler<UpdateCustomer.Command>("/customers.update");
+app.MapGetHandler<ListCachedCustomers.Query, ListCachedCustomers.Response>("/customers.cache.list");
 
 app.MapGetHandler<ListAddresses.Query, ListAddresses.Response>("/addresses.list");
 app.MapPostHandler<CreateAddress.Command, CreateAddress.Response>("/addresses.create");

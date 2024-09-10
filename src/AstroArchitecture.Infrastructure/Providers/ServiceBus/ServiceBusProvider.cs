@@ -1,7 +1,7 @@
 ﻿using Azure.Messaging.ServiceBus;
 using System.Text.Json;
 
-namespace AstroArchitecture.Infrastructure.Providers;
+namespace AstroArchitecture.Infrastructure.Providers.ServiceBus;
 
 public class ServiceBusProvider(ServiceBusClient serviceBusClient) : IServiceBusProvider
 {
