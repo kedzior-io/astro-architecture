@@ -1,7 +1,6 @@
-﻿using AstroArchitecture.Api.Middlewares.Cache;
-using AstroArchitecture.Infrastructure.Providers.Cache;
+﻿using AstroArchitecture.Infrastructure.Providers.Cache;
 
-namespace AstroArchitecture.Api.Cache;
+namespace AstroArchitecture.Api.Middlewares.Cache;
 
 public class CacheMiddleware(RequestDelegate next, ICacheProvider casheProvider)
 {
@@ -26,7 +25,7 @@ public class CacheMiddleware(RequestDelegate next, ICacheProvider casheProvider)
         {
             context.Response.ContentType = cachedResponse.ContentType;
             context.Response.StatusCode = cachedResponse.StatusCode;
-            await context.Response.Body.WriteAsync(cachedResponse.Body, 0, cachedResponse.Body.Length);
+            await context.Response.Body.WriteAsync(cachedResponse.Body.AsMemory(0, cachedResponse.Body.Length));
 
             return;
         }

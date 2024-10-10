@@ -4,6 +4,7 @@ using AstroArchitecture.Handlers;
 using AstroArchitecture.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using AstroArchitecture.Api.Middlewares.Cache;
+using AstroArchitecture.Infrastructure.Providers.Cache;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddCors();
 
 builder.Services.AddScoped<IHandlerContext, HandlerContext>();
+builder.Services.AddSingleton<ICacheProvider, FusionCacheProvider>();
+
 builder.Services.AddDbContext<IDbContext, ApplicationDbContext>();
 
 // Uncomment to try Service Bus triggered Azure Functions
@@ -31,6 +34,7 @@ builder.Services.AddSwaggerGen(options => { options.CustomSchemaIds(s => s.FullN
 builder.Services.AddAstroCqrs();
 
 var app = builder.Build();
+app.UseMiddleware<CacheMiddleware>();
 
 /*
  * Add your endpoint here
