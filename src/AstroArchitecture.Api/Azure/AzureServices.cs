@@ -10,7 +10,7 @@ public static class AzureServices
     {
         services.AddSingleton<ServiceBusClient>(_ =>
         {
-            var serviceBusConnectionString = ConnectionStrings.ServiceBusConnection;
+            var serviceBusConnectionString = ConnectionStrings.ServiceBus;
 
             if (string.IsNullOrWhiteSpace(serviceBusConnectionString))
             {

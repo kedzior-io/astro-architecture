@@ -3,7 +3,7 @@ using Serilog;
 using AstroArchitecture.Handlers;
 using AstroArchitecture.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
-using AstroArchitecture.Api.Azure;
+using AstroArchitecture.Api.Middlewares.Cache;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,7 +43,8 @@ app.MapPostHandler<UpdateCustomer.Command>("/customers.update");
 app.MapGetHandler<ListAddresses.Query, ListAddresses.Response>("/addresses.list");
 app.MapPostHandler<CreateAddress.Command, CreateAddress.Response>("/addresses.create");
 
-app.MapGetHandler<ListProducts.Query, ListProducts.Response>("/products.list");
+app.MapGetHandler<ListProducts.Query, ListProducts.Response>("/products.list")
+    .UseCache();
 app.MapPostHandler<CreateProduct.Command, CreateProduct.Response>("/products.create");
 
 app.MapGetHandler<ListOrders.Query, ListOrders.Response>("/orders.list");
