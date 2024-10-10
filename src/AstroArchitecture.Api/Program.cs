@@ -3,7 +3,8 @@ using Serilog;
 using AstroArchitecture.Handlers;
 using AstroArchitecture.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
-using AstroArchitecture.Api.Azure;
+using AstroArchitecture.Api.Middlewares.Cache;
+using AstroArchitecture.Infrastructure.Providers.Cache;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddCors();
 
 builder.Services.AddScoped<IHandlerContext, HandlerContext>();
+builder.Services.AddSingleton<ICacheProvider, FusionCacheProvider>();
+
 builder.Services.AddDbContext<IDbContext, ApplicationDbContext>();
 
 // Uncomment to try Service Bus triggered Azure Functions
@@ -31,6 +34,7 @@ builder.Services.AddSwaggerGen(options => { options.CustomSchemaIds(s => s.FullN
 builder.Services.AddAstroCqrs();
 
 var app = builder.Build();
+app.UseMiddleware<CacheMiddleware>();
 
 /*
  * Add your endpoint here
@@ -43,7 +47,8 @@ app.MapPostHandler<UpdateCustomer.Command>("/customers.update");
 app.MapGetHandler<ListAddresses.Query, ListAddresses.Response>("/addresses.list");
 app.MapPostHandler<CreateAddress.Command, CreateAddress.Response>("/addresses.create");
 
-app.MapGetHandler<ListProducts.Query, ListProducts.Response>("/products.list");
+app.MapGetHandler<ListProducts.Query, ListProducts.Response>("/products.list")
+    .UseCache();
 app.MapPostHandler<CreateProduct.Command, CreateProduct.Response>("/products.create");
 
 app.MapGetHandler<ListOrders.Query, ListOrders.Response>("/orders.list");
