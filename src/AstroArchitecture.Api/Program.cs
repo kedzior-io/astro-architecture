@@ -34,7 +34,6 @@ builder.Services.AddSwaggerGen(options => { options.CustomSchemaIds(s => s.FullN
 builder.Services.AddAstroCqrs();
 
 var app = builder.Build();
-app.UseMiddleware<CacheMiddleware>();
 
 /*
  * Add your endpoint here
@@ -70,5 +69,7 @@ if (app.Environment.IsDevelopment())
     var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
     dbContext.Database.Migrate();
 }
+
+app.UseMiddleware<CacheMiddleware>();
 
 app.Run();
