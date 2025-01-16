@@ -1,11 +1,11 @@
 # This stage is used when running from VS in fast mode (Default for Debug configuration)
-FROM  AS base
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER $APP_UID
 WORKDIR /app
 EXPOSE 8080
 
 # This stage is used to build the service project
-FROM  AS build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["src/AstroArchitecture.Api/AstroArchitecture.Api.csproj", "src/AstroArchitecture.Api/"]
