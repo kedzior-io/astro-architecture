@@ -175,6 +175,42 @@ public class CreateProductTests
 }
 ```
 
+6. Cache Middleware for your endpoints
+
+The Cache Middleware allows you to cache responses for specified endpoints in your ASP.NET Core application, improving performance by reducing the need for repeated processing of identical requests.
+
+### Overview
+
+This middleware leverages the **FusionCacheProvider** to store cached responses for a duration defined in the middleware. It checks if caching is enabled for the endpoint and handles the retrieval and storage of cached responses.
+
+
+## Features
+
+- **Efficient Response Caching**: Caches HTTP responses for specified endpoints.
+- **FusionCache Integration**: Leverages FusionCacheProvider for advanced caching capabilities, including support for memory and distributed caching.
+- **Dynamic Cache Key Generation**: Cache keys are generated based on the request URL and query strings. It can be configured in **GenerateCacheKey** function.
+- **Configurable Cache Duration**: Responses are cached for 30 minutes by default, but this can be modified as needed.
+- **Custom Cache Metadata**: The caching behavior is controlled using endpoint metadata (CacheMetadata).
+
+### Usage
+
+
+1. **Add the Middleware to the Pipeline**
+
+   You can add the Cache Middleware to your application like this:
+
+   ```csharp
+   app.UseMiddleware<CacheMiddleware>();
+   ```
+
+2. **Example Endpoint with Caching**
+
+   Here’s how to create a GET endpoint that uses the cache middleware:
+
+   ```csharp
+   app.MapGetHandler<ListProducts.Query, ListProducts.Response>("/products.list")
+       .UseCache();
+   ```
 ## More usages:
 
 Check samples here: [AstroCQRS](https://github.com/kedzior-io/astro-cqrs)

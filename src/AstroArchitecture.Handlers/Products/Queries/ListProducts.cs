@@ -8,7 +8,7 @@ public static class ListProducts
 
     public sealed class Response(IReadOnlyCollection<Product> products)
     {
-        public IReadOnlyCollection<ProductListModel> Customers { get; private set; } = products.Select(ProductListModel.Create).ToList();
+        public IReadOnlyCollection<ProductListModel> Products { get; private set; } = products.Select(ProductListModel.Create).ToList();
     }
 
     public sealed class Handler(IHandlerContext context) : QueryHandler<Query, Response>(context)
