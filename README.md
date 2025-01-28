@@ -1,17 +1,21 @@
-﻿# Astro Architecture Solution Template for .NET8
+﻿# Astro Architecture Solution Template for .NET 9
 
-This is a solution template for creating ASP.NET Core Web API that puts together CQRS + DDD (Domain Driven Design) and Vertical Slice architecture.
+This solution template provides a streamlined and modern way to build ASP.NET Core Web APIs by combining CQRS (Command Query Responsibility Segregation), DDD (Domain-Driven Design), and Vertical Slice Architecture. It’s designed to be simple, consistent, and testable while minimizing setup overhead.
 
-It uses [AstroCQRS](https://github.com/kedzior-io/astro-cqrs) for zero-setup CQRS and Vertical Slice architecture.
+Powered by [AstroCQRS](https://github.com/kedzior-io/astro-cqrs), this template delivers a truly zero-setup experience - literally requiring just this single line:
 
-## Motives
+```csharp
+builder.Services.AddAstroCqrs();
+```
 
-I often read on how CQRS and Vertical Architecture is an overkill and has big configuring overhead. This template proves it can be literary zero-setup. It also 
+# Why use this template?
 
-- easy to start / zero-setup
-- keep simple structure
-- enforce consistency
-- testibility
+Some people think CQRS and Vertical Slice Architecture are too complicated and take forever to set up. This template proves that's not true. Here's what it brings:
+
+- Zero Setup: You can start coding right away-no painful setup required.
+- Simple Structure: The project layout is clean and easy to scale.
+- Consistent Patterns: Keeps your codebase organized and predictable.
+- Easy to Test: Write modular, testable code without extra hassle.
  
 ## Project structure
 

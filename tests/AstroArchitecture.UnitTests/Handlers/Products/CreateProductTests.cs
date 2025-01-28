@@ -45,13 +45,13 @@ public class CreateProductTests
     }
 
     [Fact]
-    public void Create_Product_ReturnNameTooShort()
+    public async Task Create_Product_ReturnNameTooShort()
     {
         var dc = InMemoryDbContextFactory.Create();
         SetTestData(dc);
 
         var command = new CreateProduct.Command("", 6.66m, 666);
 
-        Assert.ThrowsAsync<ArgumentException>(async () => await GetHandler(dc).ExecuteAsync(command, default));
+        await Assert.ThrowsAsync<ArgumentException>(async () => await GetHandler(dc).ExecuteAsync(command, default));
     }
 }

@@ -6,7 +6,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Events;
-using System;
 
 var loggerConfiguration = new LoggerConfiguration()
     .MinimumLevel.Debug()
@@ -18,10 +17,7 @@ var loggerConfiguration = new LoggerConfiguration()
 var logger = loggerConfiguration.CreateLogger();
 
 var host = new HostBuilder()
-    .ConfigureFunctionsWorkerDefaults(builder =>
-    {
-        builder.Serializer = new JsonObjectSerializer(CustomJsonOptions.Defaults);
-    })
+    .ConfigureFunctionsWorkerDefaults()
     .ConfigureServices(services =>
     {
         services.AddSingleton<ILogger>(_ => logger);
@@ -31,10 +27,10 @@ var host = new HostBuilder()
         // TODO: Looking for a better way to find and register handlers
         services.AddAstroCqrsFromAssemblyContaining<ListOrders.Query>();
 
-        foreach (var service in services)
+        services.Configure<WorkerOptions>(workerOptions =>
         {
-            Console.WriteLine($"Service: {service.ServiceType.FullName}, Lifetime: {service.Lifetime}");
-        }
+            workerOptions.Serializer = new JsonObjectSerializer(CustomJsonOptions.Defaults);
+        });
     })
     .Build();
 
