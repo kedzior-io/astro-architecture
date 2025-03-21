@@ -1,5 +1,6 @@
 ﻿using AstroArchitecture.Core.Constants;
 using AstroArchitecture.Domain;
+using AstroArchitecture.Domain.Discounts;
 using Microsoft.EntityFrameworkCore;
 using System.Runtime.CompilerServices;
 
@@ -12,6 +13,7 @@ public interface IDbContext : IDisposable
     public DbSet<Address> Addresses { get; set; }
     public DbSet<Order> Orders { get; set; }
     public DbSet<OrderItem> OrderItems { get; set; }
+    public DbSet<Discount> Discounts { get; set; }
 
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default, [CallerMemberName] string? callerFunction = null, [CallerFilePath] string? callerFile = null);
 }
@@ -23,6 +25,7 @@ public class ApplicationDbContext(DbContextOptions options) : DbContext(options)
     public DbSet<Address> Addresses { get; set; }
     public DbSet<Order> Orders { get; set; }
     public DbSet<OrderItem> OrderItems { get; set; }
+    public DbSet<Discount> Discounts { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder builder)
     {

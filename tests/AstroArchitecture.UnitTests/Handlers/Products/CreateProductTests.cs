@@ -1,4 +1,6 @@
-﻿namespace AstroArchitecture.UnitTests.Handlers.Orders;
+﻿using AstroArchitecture.Handlers.Handlers.Products.Commands;
+
+namespace AstroArchitecture.UnitTests.Handlers.Orders;
 
 public class CreateProductTests
 {

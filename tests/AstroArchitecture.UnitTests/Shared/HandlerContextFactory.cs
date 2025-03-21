@@ -1,4 +1,6 @@
-﻿namespace AstroArchitecture.UnitTests.Shared;
+﻿using AstroArchitecture.Handlers.Handlers.Abstractions;
+
+namespace AstroArchitecture.UnitTests.Shared;
 
 public static class HandlerContextFactory
 {

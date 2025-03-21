@@ -1,9 +1,17 @@
 using AstroCqrs;
 using Serilog;
-using AstroArchitecture.Handlers;
 using AstroArchitecture.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using AstroArchitecture.Api.Azure;
+using AstroArchitecture.Handlers.Handlers.Abstractions;
+using AstroArchitecture.Handlers.Handlers.Addresses.Commands;
+using AstroArchitecture.Handlers.Handlers.Addresses.Queries;
+using AstroArchitecture.Handlers.Handlers.Customers.Commands;
+using AstroArchitecture.Handlers.Handlers.Customers.Queries;
+using AstroArchitecture.Handlers.Handlers.Products.Commands;
+using AstroArchitecture.Handlers.Handlers.Products.Queries;
+using AstroArchitecture.Handlers.Handlers.Orders.Commands;
+using AstroArchitecture.Handlers.Handlers.Orders.Queries;
 
 var builder = WebApplication.CreateBuilder(args);
 
