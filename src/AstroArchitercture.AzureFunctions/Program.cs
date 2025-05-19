@@ -25,7 +25,7 @@ var host = new HostBuilder()
         services.AddScoped<IHandlerContext, AzureFunctionsHandlerContext>();
 
         // TODO: Looking for a better way to find and register handlers
-        services.AddAstroCqrsFromAssemblyContaining<ListOrders.Query>();
+        services.AddMinimalCqrsFromAssemblyContaining<ListOrders.Query>();
 
         services.Configure<WorkerOptions>(workerOptions =>
         {

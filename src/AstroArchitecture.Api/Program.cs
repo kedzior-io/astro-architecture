@@ -1,9 +1,8 @@
-using AstroCqrs;
+using MinimalCqrs;
 using Serilog;
 using AstroArchitecture.Handlers;
 using AstroArchitecture.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
-using AstroArchitecture.Api.Azure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,7 +27,7 @@ builder.Services.AddDbContext<IDbContext, ApplicationDbContext>();
  */
 builder.Services.AddSwaggerGen(options => { options.CustomSchemaIds(s => s.FullName?.Replace("+", ".")); });
 
-builder.Services.AddAstroCqrs();
+builder.Services.AddMinimalCqrs();
 
 var app = builder.Build();
 
