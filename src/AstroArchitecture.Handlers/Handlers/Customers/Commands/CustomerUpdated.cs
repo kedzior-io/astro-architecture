@@ -1,5 +1,4 @@
-﻿using AstroArchitecture.Handlers.Customers.Models;
-using AstroArchitecture.Handlers.Handlers.Abstractions;
+﻿using AstroArchitecture.Handlers.Handlers.Abstractions;
 
 namespace AstroArchitecture.Handlers.Handlers.Customers.Commands;
 

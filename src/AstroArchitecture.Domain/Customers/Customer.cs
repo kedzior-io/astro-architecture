@@ -1,5 +1,6 @@
 using Ardalis.GuardClauses;
 using AstroArchitecture.Domain.Abstractions;
+using AstroArchitecture.Domain.Customers.Events;
 
 namespace AstroArchitecture.Domain;
 
@@ -39,6 +40,8 @@ public class Customer : Entity<Guid>, IAggregateRoot
         var address = new Address(name, street, city, country, zipCode);
 
         Addresses.Add(address);
+
+        AddDomainEvent(new AddressCreatedEvent(Id, address));
 
         return address;
     }

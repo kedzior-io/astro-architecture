@@ -2,6 +2,7 @@
 using AstroArchitecture.Domain;
 using AstroArchitecture.Domain.Discounts;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Runtime.CompilerServices;
 
 namespace AstroArchitecture.Infrastructure.Persistence;
@@ -14,6 +15,7 @@ public interface IDbContext : IDisposable
     public DbSet<Order> Orders { get; set; }
     public DbSet<OrderItem> OrderItems { get; set; }
     public DbSet<Discount> Discounts { get; set; }
+    public ChangeTracker Changes { get; }
 
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default, [CallerMemberName] string? callerFunction = null, [CallerFilePath] string? callerFile = null);
 }
@@ -26,6 +28,7 @@ public class ApplicationDbContext(DbContextOptions options) : DbContext(options)
     public DbSet<Order> Orders { get; set; }
     public DbSet<OrderItem> OrderItems { get; set; }
     public DbSet<Discount> Discounts { get; set; }
+    public ChangeTracker Changes => ChangeTracker;
 
     protected override void OnConfiguring(DbContextOptionsBuilder builder)
     {
@@ -47,6 +50,8 @@ public class ApplicationDbContext(DbContextOptions options) : DbContext(options)
         base.OnModelCreating(modelBuilder);
     }
 
-    public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default, [CallerMemberName] string? callerFunction = null, [CallerFilePath] string? callerFile = null) =>
-        await base.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+    public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default, [CallerMemberName] string? callerFunction = null, [CallerFilePath] string? callerFile = null)
+    {
+        return await base.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+    }
 }

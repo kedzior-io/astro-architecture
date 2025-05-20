@@ -1,6 +1,4 @@
-﻿using AstroArchitecture.Domain;
-using AstroArchitecture.Domain.Discounts;
-using AstroArchitecture.Domain.Events;
+﻿using AstroArchitecture.Domain.Discounts;
 using AstroArchitecture.Handlers.Handlers.Abstractions;
 using AstroArchitecture.Handlers.Handlers.Orders.Models;
 
@@ -34,8 +32,6 @@ public static class CreateDiscount
 
             await DbContext.Discounts.AddAsync(discount, ct);
             await DbContext.SaveChangesAsync();
-
-
 
             return Success();
         }

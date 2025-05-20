@@ -2,10 +2,10 @@
 
 This solution template provides a streamlined and modern way to build ASP.NET Core Web APIs by combining CQRS (Command Query Responsibility Segregation), DDD (Domain-Driven Design), and Vertical Slice Architecture. It’s designed to be simple, consistent, and testable while minimizing setup overhead.
 
-Powered by [AstroCQRS](https://github.com/kedzior-io/astro-cqrs), this template delivers a truly zero-setup experience - literally requiring just this single line:
+Powered by [MinimalCQRS](https://github.com/kedzior-io/minimal-cqrs), this template delivers a truly zero-setup experience - literally requiring just this single line:
 
 ```csharp
-builder.Services.AddAstroCqrs();
+builder.Services.AddMinimalCqrs();
 ```
 
 # Why use this template?
@@ -181,9 +181,9 @@ public class CreateProductTests
 
 ## More usages:
 
-Check samples here: [AstroCQRS](https://github.com/kedzior-io/astro-cqrs)
+Check samples here: [MinimalCQRS](https://github.com/kedzior-io/minimal-cqrs)
 
-More info: [Building .NET 8 APIs with Zero-Setup CQRS and Vertical Slice Architecture](https://dev.to/kedzior_io/building-net-8-apis-with-zero-setup-cqrs-and-vertical-slice-architecture-528p)
+More info: [Building .NET 9 & .NET 8 APIs with Zero-Setup CQRS and Vertical Slice Architecture](https://dev.to/kedzior_io/building-net-8-apis-with-zero-setup-cqrs-and-vertical-slice-architecture-528p)
 
 ## Todo
 
@@ -201,6 +201,6 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ## Questions, feature requests
 
-- Create a [new issue](https://github.com/kedzior-io/astro-cqrs/issues/new)
+- Create a [new issue](https://github.com/kedzior-io/minimal-cqrs/issues/new)
 - [Twitter](https://twitter.com/KedziorArtur)
 - [Discord](https://discord.gg/j3vmcaZG)

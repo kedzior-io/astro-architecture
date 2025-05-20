@@ -39,7 +39,7 @@ public static class CreateAddress
         }
     }
 
-    public sealed class Handler(IPublisher _eventPublisher, IHandlerContext context) : CommandHandler<Command, Response>(context)
+    public sealed class Handler(IHandlerContext context) : CommandHandler<Command, Response>(context)
     {
         public override async Task<IHandlerResponse<Response>> ExecuteAsync(Command command, CancellationToken ct)
         {
@@ -54,9 +54,8 @@ public static class CreateAddress
             }
 
             var address = customer.AddAddress(command.Name, command.Street, command.City, command.Country, command.ZipCode);
-            await DbContext.SaveChangesAsync(ct);
 
-            await _eventPublisher.Publish(new AddressCreatedEvent(customer.Id, address), ct);
+            await SaveChangesAsync(ct);
 
             return Success(new Response(address.Id));
         }

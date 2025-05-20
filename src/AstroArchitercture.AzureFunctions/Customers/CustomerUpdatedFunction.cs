@@ -1,5 +1,4 @@
 using AstroArchitecture.Handlers.Handlers.Customers.Commands;
-using System.Threading.Tasks;
 
 namespace AstroArchitercture.AzureFunctions.Customers;
 
