@@ -1,6 +1,5 @@
 using Ardalis.GuardClauses;
 using AstroArchitecture.Domain.Abstractions;
-using AstroArchitecture.Domain.Customers.Events;
 
 namespace AstroArchitecture.Domain;
 

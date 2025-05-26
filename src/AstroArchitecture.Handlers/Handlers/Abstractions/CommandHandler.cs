@@ -5,6 +5,8 @@ using Serilog;
 using System.Runtime.CompilerServices;
 using AstroArchitecture.Handlers.EventHandlers.Customers;
 using Microsoft.EntityFrameworkCore;
+using AstroArchitecture.Domain.Abstractions;
+using System.Reflection;
 
 namespace AstroArchitecture.Handlers.Handlers.Abstractions;
 
@@ -18,19 +20,22 @@ public abstract class CommandHandler<TCommand, TResponse>(IHandlerContext contex
     {
         var response = await DbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 
-        //var modifiedEntities = context.DbContext.Changes
-        //    .Entries()
-        //    .Where(e => e.State == EntityState.Modified)
-        //    .Select(e => e.Entity)
-        //    .ToList();
+        var entities = DbContext.Changes.Entries()
+           .Where(e => e.Entity is Entity<object> &&
+                       (e.State == EntityState.Added || e.State == EntityState.Modified || e.State == EntityState.Deleted))
+           .Select(e => e.Entity)
+           .Cast<Entity<object>>()
+           .ToList();
 
-        //foreach (var entity as Entity in modifiedEntities)
-        //{
-        //    foreach (var entity in entity)
-        //    {
-        //        await _eventPublisher.Publish(entitycancellationToken);
-        //    }
-        //}
+        foreach (var entitity in entities)
+        {
+            foreach (var domainEvent in entitity.DomainEvents)
+            {
+                await _eventPublisher.Publish(domainEvent, cancellationToken);
+            }
+
+            entitity.ClearDomainEvent();
+        }
 
         return response;
     }

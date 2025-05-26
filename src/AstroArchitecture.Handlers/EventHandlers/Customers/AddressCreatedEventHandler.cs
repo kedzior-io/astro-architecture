@@ -9,10 +9,9 @@ namespace AstroArchitecture.Handlers.EventHandlers.Customers;
 
 // TODO: create manual readdb store sync
 public sealed class AddressCreatedEventHandler(IMemoryCache _memoryCache /* IReadDbContext _readDbContext */) : INotificationHandler<AddressCreatedEvent>
-{    
+{
     public async Task Handle(AddressCreatedEvent notification, CancellationToken cancellationToken)
     {
-
         SetAddressList(notification);
         SetAddress(notification);
         SetAddressFullList(notification);
@@ -56,10 +55,11 @@ public sealed class AddressCreatedEventHandler(IMemoryCache _memoryCache /* IRea
     private static class CacheKeys
     {
         public static string CustomerAddressList(Guid customerId) => $"{customerId}-{nameof(CustomerAddressList)}";
+
         public static string CustomerAddress(Guid customerId, Guid addressId) => $"{customerId}-{addressId}-{nameof(CustomerAddress)}";
 
-        public static string AddressFullList =>nameof(AddressFullList);
-    } 
+        public static string AddressFullList => nameof(AddressFullList);
+    }
 }
 
 // ----------------------------------------------------------------------
@@ -69,15 +69,12 @@ public class AddressListReadModel
     public Guid AddressId { get; set; }
     public string Name { get; set; }
 
-
     public AddressListReadModel(AddressCreatedEvent addressCreatedEvent)
     {
         AddressId = addressCreatedEvent.AddressId;
         Name = addressCreatedEvent.Name;
-
     }
 }
-
 
 public class AddressReadModel
 {
@@ -99,14 +96,12 @@ public class AddressFullListReadModel(AddressCreatedEvent addressCreatedEvent) :
 {
 }
 
+// TODO: add to MinimalCQRS
+public interface INotificationHandler<T>
+{ }
 
-
-
-
-// TODO: add to AstroCQRS
-public interface INotificationHandler<T> { }
-
-// TODO: add to AstroCQRS
-public interface IPublisher {
-    Task Publish(object notifications, CancellationToken cancellationToken);
+// TODO: add to MinimalCQRS
+public interface IPublisher
+{
+    Task Publish(object notification, CancellationToken cancellationToken);
 }

@@ -19,5 +19,10 @@ namespace AstroArchitecture.Domain.Abstractions
         {
             _domainEvents.Add(domainEvent);
         }
+
+        public void ClearDomainEvent()
+        {
+            _domainEvents.Clear();
+        }
     }
 }
