@@ -1,7 +1,7 @@
 ﻿using AstroArchitecture.Infrastructure.Persistence;
 using Serilog;
 
-namespace AstroArchitecture.Handlers.Handlers.Abstractions;
+namespace AstroArchitecture.Handlers.Abstractions;
 
 public abstract class QueryHandler<TQuery, TResponse>(IHandlerContext context) : Handler<TQuery, TResponse> where TQuery : IHandlerMessage<IHandlerResponse<TResponse>>
 {

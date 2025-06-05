@@ -1,6 +1,4 @@
-﻿using AstroArchitecture.Domain.Customers.Events;
-using AstroArchitecture.Handlers.EventHandlers.Customers;
-using AstroArchitecture.Handlers.Handlers.Abstractions;
+﻿using AstroArchitecture.Handlers.Abstractions;
 
 namespace AstroArchitecture.Handlers.Handlers.Addresses.Commands;
 

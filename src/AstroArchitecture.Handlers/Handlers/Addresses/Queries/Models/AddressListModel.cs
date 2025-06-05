@@ -1,4 +1,4 @@
-﻿namespace AstroArchitecture.Handlers.Handlers.Addresses.Models;
+﻿namespace AstroArchitecture.Handlers.Handlers.Addresses.Queries.Models;
 
 public sealed class AddressListModel(Address address)
 {

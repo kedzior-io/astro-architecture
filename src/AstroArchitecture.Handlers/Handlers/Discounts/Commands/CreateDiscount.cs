@@ -1,5 +1,5 @@
 ﻿using AstroArchitecture.Domain.Discounts;
-using AstroArchitecture.Handlers.Handlers.Abstractions;
+using AstroArchitecture.Handlers.Abstractions;
 using AstroArchitecture.Handlers.Handlers.Orders.Models;
 
 namespace AstroArchitecture.Handlers.Handlers.Discounts.Commands;

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AstroArchitecture.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class UpdateAddress : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,13 +19,30 @@ namespace AstroArchitecture.Infrastructure.Migrations
                     FirstName = table.Column<string>(type: "TEXT", nullable: false),
                     LastName = table.Column<string>(type: "TEXT", nullable: false),
                     Email = table.Column<string>(type: "TEXT", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    ModifiedAt = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    CreatedAtUtc = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    ModifiedAtUtc = table.Column<DateTime>(type: "TEXT", nullable: true),
                     EntityStatus = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Customers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Discounts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    DiscountCode = table.Column<string>(type: "TEXT", nullable: false),
+                    ValidUntilUtc = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    CreatedAtUtc = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    ModifiedAtUtc = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    EntityStatus = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Discounts", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -37,8 +54,8 @@ namespace AstroArchitecture.Infrastructure.Migrations
                     Name = table.Column<string>(type: "TEXT", nullable: false),
                     Price = table.Column<decimal>(type: "TEXT", nullable: false),
                     Stock = table.Column<int>(type: "INTEGER", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    ModifiedAt = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    CreatedAtUtc = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    ModifiedAtUtc = table.Column<DateTime>(type: "TEXT", nullable: true),
                     EntityStatus = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
@@ -57,8 +74,8 @@ namespace AstroArchitecture.Infrastructure.Migrations
                     Country = table.Column<string>(type: "TEXT", nullable: false),
                     ZipCode = table.Column<string>(type: "TEXT", nullable: false),
                     CustomerId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    ModifiedAt = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    CreatedAtUtc = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    ModifiedAtUtc = table.Column<DateTime>(type: "TEXT", nullable: true),
                     EntityStatus = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
@@ -85,8 +102,8 @@ namespace AstroArchitecture.Infrastructure.Migrations
                     Address_ZipCode = table.Column<string>(type: "TEXT", nullable: false),
                     Status = table.Column<int>(type: "INTEGER", nullable: false),
                     OrderStatus = table.Column<int>(type: "INTEGER", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    ModifiedAt = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    CreatedAtUtc = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    ModifiedAtUtc = table.Column<DateTime>(type: "TEXT", nullable: true),
                     EntityStatus = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
@@ -110,8 +127,8 @@ namespace AstroArchitecture.Infrastructure.Migrations
                     ProductName = table.Column<string>(type: "TEXT", nullable: false),
                     Quantity = table.Column<int>(type: "INTEGER", nullable: false),
                     Price = table.Column<decimal>(type: "TEXT", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    ModifiedAt = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    CreatedAtUtc = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    ModifiedAtUtc = table.Column<DateTime>(type: "TEXT", nullable: true),
                     EntityStatus = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
@@ -141,6 +158,9 @@ namespace AstroArchitecture.Infrastructure.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Addresses");
+
+            migrationBuilder.DropTable(
+                name: "Discounts");
 
             migrationBuilder.DropTable(
                 name: "OrderItems");

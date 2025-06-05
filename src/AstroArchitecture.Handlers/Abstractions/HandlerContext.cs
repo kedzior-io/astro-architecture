@@ -1,7 +1,7 @@
 using AstroArchitecture.Infrastructure.Persistence;
 using Serilog;
 
-namespace AstroArchitecture.Handlers.Handlers.Abstractions;
+namespace AstroArchitecture.Handlers.Abstractions;
 
 public sealed class HandlerContext(IDbContext dbContext, ILogger logger) : IHandlerContext
 {

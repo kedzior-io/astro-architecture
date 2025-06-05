@@ -15,7 +15,7 @@ namespace AstroArchitecture.Infrastructure.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "8.0.1");
+            modelBuilder.HasAnnotation("ProductVersion", "9.0.5");
 
             modelBuilder.Entity("AstroArchitecture.Domain.Address", b =>
                 {
@@ -31,7 +31,7 @@ namespace AstroArchitecture.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateTime>("CreatedAtUtc")
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("CustomerId")
@@ -40,7 +40,7 @@ namespace AstroArchitecture.Infrastructure.Migrations
                     b.Property<int>("EntityStatus")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime?>("ModifiedAt")
+                    b.Property<DateTime?>("ModifiedAtUtc")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
@@ -68,7 +68,7 @@ namespace AstroArchitecture.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateTime>("CreatedAtUtc")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
@@ -86,12 +86,39 @@ namespace AstroArchitecture.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("ModifiedAt")
+                    b.Property<DateTime?>("ModifiedAtUtc")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
                     b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("AstroArchitecture.Domain.Discounts.Discount", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("CreatedAtUtc")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DiscountCode")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("EntityStatus")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime?>("ModifiedAtUtc")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("ValidUntilUtc")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Discounts");
                 });
 
             modelBuilder.Entity("AstroArchitecture.Domain.Order", b =>
@@ -100,7 +127,7 @@ namespace AstroArchitecture.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateTime>("CreatedAtUtc")
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("CustomerId")
@@ -109,7 +136,7 @@ namespace AstroArchitecture.Infrastructure.Migrations
                     b.Property<int>("EntityStatus")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime?>("ModifiedAt")
+                    b.Property<DateTime?>("ModifiedAtUtc")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("OrderStatus")
@@ -131,13 +158,13 @@ namespace AstroArchitecture.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateTime>("CreatedAtUtc")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("EntityStatus")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime?>("ModifiedAt")
+                    b.Property<DateTime?>("ModifiedAtUtc")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
@@ -216,13 +243,13 @@ namespace AstroArchitecture.Infrastructure.Migrations
                                 .ValueGeneratedOnAdd()
                                 .HasColumnType("TEXT");
 
-                            b1.Property<DateTime>("CreatedAt")
+                            b1.Property<DateTime>("CreatedAtUtc")
                                 .HasColumnType("TEXT");
 
                             b1.Property<int>("EntityStatus")
                                 .HasColumnType("INTEGER");
 
-                            b1.Property<DateTime?>("ModifiedAt")
+                            b1.Property<DateTime?>("ModifiedAtUtc")
                                 .HasColumnType("TEXT");
 
                             b1.Property<decimal>("Price")

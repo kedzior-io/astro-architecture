@@ -1,4 +1,4 @@
-﻿using AstroArchitecture.Handlers.Handlers.Abstractions;
+﻿using AstroArchitecture.Handlers.Abstractions;
 using AstroArchitecture.Handlers.Handlers.Orders.Queries;
 using AstroArchitecture.Infrastructure.Persistence;
 using AstroArchitercture.AzureFunctions;

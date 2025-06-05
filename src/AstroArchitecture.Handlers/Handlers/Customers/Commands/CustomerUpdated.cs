@@ -1,4 +1,4 @@
-﻿using AstroArchitecture.Handlers.Handlers.Abstractions;
+﻿using AstroArchitecture.Handlers.Abstractions;
 
 namespace AstroArchitecture.Handlers.Handlers.Customers.Commands;
 

@@ -2,7 +2,7 @@ using AstroArchitecture.Infrastructure.Persistence;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 
-namespace AstroArchitecture.Handlers.Handlers.Abstractions;
+namespace AstroArchitecture.Handlers.Abstractions;
 
 public sealed class AzureFunctionsHandlerContext(IServiceScopeFactory serviceScopeFactory, ILogger logger) : IHandlerContext
 {
