@@ -1,6 +1,7 @@
 ﻿using AstroArchitecture.Domain.Customers.Events;
 using AstroArchitecture.Handlers.Abstractions;
 using AstroArchitecture.Handlers.Handlers.Addresses.Events.Models;
+using AstroArchitecture.Infrastructure.Persistence;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace AstroArchitecture.Handlers.Handlers.Addresses.Events;
@@ -43,8 +44,6 @@ public static class AddressCreated
             public static string CustomerAddressList(Guid customerId) => $"{customerId}-{nameof(CustomerAddressList)}";
 
             public static string CustomerAddress(Guid customerId, Guid addressId) => $"{customerId}-{addressId}-{nameof(CustomerAddress)}";
-
-            public static string AddressFullList => nameof(AddressFullList);
         }
     }
 }

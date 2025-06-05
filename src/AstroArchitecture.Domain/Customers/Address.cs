@@ -25,6 +25,7 @@ public class Address : Entity<Guid>, IValueObject
         Guard.Against.NullOrWhiteSpace(country);
         Guard.Against.NullOrWhiteSpace(zipCode);
 
+        Id = Guid.NewGuid();
         Name = name;
         Street = street;
         City = city;
