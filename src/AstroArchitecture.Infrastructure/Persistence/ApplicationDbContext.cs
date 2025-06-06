@@ -45,7 +45,10 @@ public class ApplicationDbContext(DbContextOptions options) : DbContext(options)
         modelBuilder.Entity<Order>().OwnsOne(x => x.Address);
         modelBuilder.Entity<Order>().OwnsMany(x => x.Items);
 
-        //modelBuilder.Entity<OrderItem>().HasOne(x => x.Order);
+        /* Id is GUID generated in the code, let EF know.
+            https://github.com/dotnet/efcore/issues/18055#issuecomment-545678535
+        */
+        modelBuilder.Entity<Address>().Property(e => e.Id).ValueGeneratedNever();
 
         base.OnModelCreating(modelBuilder);
     }

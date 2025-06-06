@@ -1,4 +1,5 @@
-﻿using AstroArchitecture.Domain.Customers.Events;
+﻿using AstroArchitecture.Core.Cache;
+using AstroArchitecture.Domain.Customers.Events;
 using AstroArchitecture.Handlers.Abstractions;
 using AstroArchitecture.Handlers.Handlers.Addresses.Events.Models;
 using AstroArchitecture.Infrastructure.Persistence;
@@ -32,18 +33,11 @@ public static class AddressCreated
 
         private void SetAddress(AddressCreatedEvent eventNotification)
         {
-            var key = CacheKeys.CustomerAddress(eventNotification.CustomerId, eventNotification.AddressId);
+            var key = CacheKeys.CustomerAddress(eventNotification.AddressId);
 
             var address = new AddressReadModel(eventNotification);
 
             _memoryCache.Set(key, address, DateTimeOffset.MaxValue);
-        }
-
-        private static class CacheKeys
-        {
-            public static string CustomerAddressList(Guid customerId) => $"{customerId}-{nameof(CustomerAddressList)}";
-
-            public static string CustomerAddress(Guid customerId, Guid addressId) => $"{customerId}-{addressId}-{nameof(CustomerAddress)}";
         }
     }
 }

@@ -26,6 +26,9 @@ builder.Services.AddCors();
 builder.Services.AddScoped<IHandlerContext, HandlerContext>();
 builder.Services.AddDbContext<IDbContext, ApplicationDbContext>();
 
+// added to demonstrate the usage of domain events and read store
+builder.Services.AddMemoryCache();
+
 // Uncomment to try Service Bus triggered Azure Functions
 // builder.Services.AddServiceBus();
 
@@ -49,6 +52,7 @@ app.MapPostHandler<UpdateCustomer.Command>("/customers.update");
 
 app.MapGetHandler<ListAddresses.Query, ListAddresses.Response>("/addresses.list");
 app.MapPostHandler<CreateAddress.Command, CreateAddress.Response>("/addresses.create");
+app.MapGetHandler<GetCachedAddreses.Query, GetCachedAddreses.Response>("/addresses.get.{id}");
 
 app.MapGetHandler<ListProducts.Query, ListProducts.Response>("/products.list");
 app.MapPostHandler<CreateProduct.Command, CreateProduct.Response>("/products.create");

@@ -1,6 +1,5 @@
 ﻿using AstroArchitecture.Handlers.Abstractions;
 using AstroArchitecture.Handlers.Handlers.Addresses.Queries.Models;
-using Microsoft.AspNetCore.Components.Web;
 
 namespace AstroArchitecture.Handlers.Handlers.Addresses.Queries;
 
